@@ -5,9 +5,8 @@ I had some issue creating buttons in email that would be consistent or at least 
 
 How to use it
 -------------
-First clone this repo to your local machine. Open terminal and change directory to where you cloned this repo. Type in ```
-ruby kevlarbutton.rb
-```
+First clone this repo to your local machine. Open terminal and change directory to where you cloned this repo. Type in
+```ruby kevlarbutton.rb```
 in your terminal and it will run. Answer the questions as you are prompted and then copy and paste the code in your email.
 
 ### Still Working On
