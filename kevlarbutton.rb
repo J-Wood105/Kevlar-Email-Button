@@ -1,3 +1,49 @@
+class Kevlar
+  def initialize(url, bgColor, bgIMG, radius, width, height, font, fontColor, fontSize, fontWeight, text)
+    @url = url
+    @bgColor = bgColor
+    @bgIMG = bgIMG
+    @radius = radius
+    @width = width
+    @height = height
+    @font = font
+    @fontColor = fontColor
+    @fontSize = fontSize
+    @fontWeight = fontWeight
+    @text = text
+    @arc = (@rad.to_f / @height.to_f * 100).ceil
+  end
+
+  def build
+    puts "\n\n<!--[if !mso]><!-- -->\n
+          \t<a href=\"#{@url}\" valign=\"middle\" style=\"background-color: #{@bgColor};background-image: url('#{@bgIMG}');background-size:100% auto;background-repeat: no-repeat;-webkit-border-radius: #{@rad}px;-moz-border-radius: #{@radius}px;-ms-border-radius: #{@radius}px;border-radius: #{@radius}px;width: #{@width}px;height: #{@height}px;text-align: center;color: #{@fontColor};font-family: #{@font}; font-size: #{@fontSize}px;font-weight: #{@fontWeight};text-transform: uppercase;display:block;line-height:32px;text-decoration: none;\">#{@text}</a>\n
+          <!--<![endif]-->\n
+          <!--[if lte mso 15]>\n
+          \t<v:roundrect xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w=\"urn:schemas-microsoft-com:office:word\" href=\"#{@url}\" style=\"height:#{@height}px;v-text-anchor:middle;width:#{@width}px;\" arcsize=\"#{@arc}%\" stroke=\"f\" fill=\"t\">\n
+            \t\t<v:fill type=\"tile\" src=\"#{@bgIMG}\" color=\"#{@bgColor}\" />\n
+              \t\t\t<w:anchorlock/>\n
+              \t\t\t<center style=\"color:#{@fontColor};font-family: #{@font}; font-size: #{@fontSize}px;font-weight: #{@fontWeight};text-transform: uppercase;\">#{@text}</center>\n
+          \t\t</v:roundrect>\n
+          <![endif]-->\n
+          <!--[if gte mso 16]>\n
+          \t<table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n
+              \t\t<tr>\n
+                  \t\t\t<td align=\"center\" valign=\"middle\" width=\"#{@width}\" height=\"#{@height}\" valign=\"middle\" style=\"background-color: #{@bgColor};background-image: url('#{@bgIMG}');background-size:100% auto;background-repeat: no-repeat;-webkit-border-radius: #{@radius}px;-moz-border-radius: #{@rad}px;-ms-border-radius: #{@rad}px;border-radius: #{@rad}px;width: #{@width}px;height: #{@height}px;text-align: center;color: #{@fontColor};font-family: #{@font}; font-size: #{@fontSize}px;font-weight: #{@fontWeight};text-transform: uppercase;display:block;\">\n
+                      \t\t\t\t<a href=\"#{@url}\" style=\"color:#{@color};text-decoration: none;\">#{@text}</a>\n
+                  \t\t\t</td>\n
+              \t\t</tr>\n
+          \t</table>\n
+          <![endif]-->\n"
+  end
+
+  def getURL
+    puts "What is the URL?"
+    @url = gets.chomp
+  end
+
+end
+
+
 def kevlar
   # setting URL
   puts "What is the URL?"
@@ -115,27 +161,10 @@ def kevlar
   btnTEXT = gets.chomp
   puts "\nThe button text is " + btnTEXT
 
-  arc = (rad.to_f / height.to_f * 100).ceil
+  button = Kevlar.new(link, bgColor, bgIMG, rad, width, height, font, color, size, weight, btnTEXT)
 
-  puts "\n\n<!--[if !mso]><!-- -->\n
-        \t<a href=\"#{link}\" valign=\"middle\" style=\"background-color: #{bgColor};background-image: url('#{bgIMG}');background-size:100% auto;background-repeat: no-repeat;-webkit-border-radius: #{rad}px;-moz-border-radius: #{rad}px;-ms-border-radius: #{rad}px;border-radius: #{rad}px;width: #{width}px;height: #{height}px;text-align: center;color: #{color};font-family: #{font}; font-size: #{size}px;font-weight: #{weight};text-transform: uppercase;display:block;line-height:32px;text-decoration: none;\">#{btnTEXT}</a>\n
-        <!--<![endif]-->\n
-        <!--[if lte mso 15]>\n
-        \t<v:roundrect xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:w=\"urn:schemas-microsoft-com:office:word\" href=\"#{btnTEXT}\" style=\"height:#{height}px;v-text-anchor:middle;width:#{width}px;\" arcsize=\"#{arc}%\" stroke=\"f\" fill=\"t\">\n
-          \t\t<v:fill type=\"tile\" src=\"#{bgIMG}\" color=\"#{bgColor}\" />\n
-            \t\t\t<w:anchorlock/>\n
-            \t\t\t<center style=\"color:#{color};font-family: #{font}; font-size: #{size}px;font-weight: #{weight};text-transform: uppercase;\">#{btnTEXT}</center>\n
-        \t\t</v:roundrect>\n
-        <![endif]-->\n
-        <!--[if gte mso 16]>\n
-        \t<table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n
-            \t\t<tr>\n
-                \t\t\t<td align=\"center\" valign=\"middle\" width=\"#{width}\" height=\"#{height}\" valign=\"middle\" style=\"background-color: #{bgColor};background-image: url('#{bgIMG}');background-size:100% auto;background-repeat: no-repeat;-webkit-border-radius: #{rad}px;-moz-border-radius: #{rad}px;-ms-border-radius: #{rad}px;border-radius: #{rad}px;width: #{width}px;height: #{height}px;text-align: center;color: #{color};font-family: #{font}; font-size: #{size}px;font-weight: #{weight};text-transform: uppercase;display:block;\">\n
-                    \t\t\t\t<a href=\"#{btnTEXT}\" style=\"color:#{color};text-decoration: none;\">#{btnTEXT}</a>\n
-                \t\t\t</td>\n
-            \t\t</tr>\n
-        \t</table>\n
-        <![endif]-->\n"
+  button.build()
+
 
 end
 
